@@ -46,3 +46,13 @@ Some compilers let you declare main() to return void. This is no longer legal C+
  namespace, not some other namespace.” You say that to the compiler by putting the char- acters std followed by two colons before the cout`
 
 * `Both the increment operator (++) and the decrement operator(––) come in two varieties: prefix and postfix. The prefix variety is written before the variable name (++myAge); the postfix variety is written after the variable name (myAge++).`
+
+
+###  References (T&)
+* A reference is an alias (another name) for an existing object.
+
+> Rules
+ - Must be initialized
+ - Cannot be reseated (once it aliases x, it always aliases x)
+ - Cannot be null (in normal correct usage)
+ - Best when the object is required and should always exist
