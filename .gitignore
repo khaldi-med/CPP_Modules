@@ -1,5 +1,4 @@
 *.out
-*.md
 *.o
 *.sh
-.vscode
+/cpp08_corr
