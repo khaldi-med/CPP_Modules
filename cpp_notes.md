@@ -36,4 +36,9 @@ A reference is an alias (another name) for an existing object.
 
 * The static section of memory known is called stack. This is a small space of memory which is managed by the CPU.
 
+### Components of Data Hiding
 
+- Data hiding can be divided into two primary components:
+    * Encapsulation
+    * Abstraction
+    * When used together, they allow us to make efficient classes for further use in our application.
