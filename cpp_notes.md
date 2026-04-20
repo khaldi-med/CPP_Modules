@@ -31,3 +31,9 @@ A reference is an alias (another name) for an existing object.
 - Cannot be reseated (once it aliases x, it always aliases x)
 - Cannot be null (in normal correct usage)
 - Best when the object is required and should always exist
+
+* The dynamic section of memory known is called heap. This is a vast space of memory which is not being managed by the CPU.
+
+* The static section of memory known is called stack. This is a small space of memory which is managed by the CPU.
+
+
