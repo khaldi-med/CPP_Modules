@@ -1,3 +1,6 @@
 *.out
 *.o
 *.sh
+*.md
+*.txt
+*.png
