@@ -1,5 +1,4 @@
 #pragma once
-
 #include "bag.hpp"
 
 class array_bag : virtual public bag {
