@@ -13,14 +13,14 @@ array_bag::array_bag(const array_bag &oth) {
 array_bag &array_bag::operator=(const array_bag &oth) {
 	this->clear();
 	this->data = new int[oth.size];
-	for (int i = 0; i < oth.size, i++)
+	for (int i = 0; i < oth.size; i++)
 		this->data[i] = oth.data[i];
 	this->size = oth.size;
 	return *this;
 }
 
 array_bag::~array_bag() {
-	delete this->data;
+	delete[] this->data;
 }
 
 void array_bag::insert(int val) {
@@ -29,14 +29,14 @@ void array_bag::insert(int val) {
 		tmp[i] = this->data[i];
 	}
 	tmp[this->size] = val;
-	delete this->data;
+	delete[] this->data;
 	this->data = tmp;
 	this->size++;
 }
 
 void array_bag::insert(int *a, int s) {
 	for (int i = 0; i < s; i++)
-		this->insert(a[i]);	
+		this->insert(a[i]);
 }
 
 void array_bag::print() const {
@@ -46,7 +46,7 @@ void array_bag::print() const {
 }
 
 void array_bag::clear() {
-	delete this->data;
+	delete[] this->data;
 	this->data = 0;
 	this->size = 0;
 }

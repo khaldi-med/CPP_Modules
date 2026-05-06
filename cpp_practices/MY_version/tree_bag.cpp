@@ -30,13 +30,13 @@ void tree_bag::set_tree(node *t) {
 
 void tree_bag::insert(int val) {
 	node **n = &this->tree;
-	while(*n) {
+	while (*n) {
 		if (val < (*n)->value)
 			n = &(*n)->l;
 		else if (val >= (*n)->value)
-			n = &(*n)->r
+			n = &(*n)->r;
 	}
-	*n = new node((node){0, 0, val});
+	*n = new node((node) {0, 0, val});
 }
 
 void tree_bag::insert(int *array, int size) {
@@ -64,19 +64,19 @@ void tree_bag::destroy_tree(node *n) {
 }
 
 void tree_bag::print_node(node *n) {
-	if(!n)
+	if (!n)
 		return ;
 	print_node(n->l);
 	std::cout << n->value << " ";
 	print_node(n->r);
 }
 
-//there's an issue here, it's defined in the header fil in such a way that the declaration should be 
+//there's an issue here, it's defined in the header fil in such a way that the declaration should be
 //void *tree_bag::copy_node(node *n)
 //but that causes inconsistencies elsewhere where the function is called to specifically make a tree_bag::node
 //Anyone have this .cpp file transcribed that can confirm?
 tree_bag::node *tree_bag::copy_node(node *n) {
 	if (!n)
 		return 0;
-	return new node((node){copy_node(n->l), copy_node(n->r), n->value});
+	return new node((node) {copy_node(n->l), copy_node(n->r), n->value});
 }
