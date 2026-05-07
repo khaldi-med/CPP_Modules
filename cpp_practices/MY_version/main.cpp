@@ -58,16 +58,27 @@ int	main(void)
 	std::cout << "after clearing t:" << std::endl;
 	std::cout << "t2 still has 7? " << t2.has(7) << std::endl; // 1 (true)
 	std::cout << "t3 still has 7? " << t3.has(7) << std::endl; // 1 (true)
-                                                             // ---- test set ----
-	set sa(*a); // constructor — takes a searchable_bag reference
-	set st(*t); // same
-	st.insert(val); // insert — but no duplicates allowed
-	sa.insert(val);
-	sa.has(val);          // search — forward to internal bag
+	// ---- test set ----
+	std::cout << "\n=== set ===" << std::endl;
+	set sa(a); // constructor — takes a searchable_bag reference
+	set st(t); // same
+	st.insert(5);
+	std::cout << "has 5? " << st.has(5) << std::endl;
+	// insert — but no duplicates allowed
+	sa.insert(3);
+	std::cout << "has 3? " << sa.has(3) << std::endl;
+
+	sa.has(5);
+	std::cout << "has 5? " << sa.has(5) << std::endl;
+	// search — forward to internal bag
+	std::cout << "has 99? " << sa.has(99) << std::endl;
 	sa.print();           // print — forward to internal bag
+  std::cout <<"get_bag():"<< std::endl;
 	sa.get_bag().print(); // get_bag() — return the internal bag
 	st.print();
 	sa.clear(); // clear — forward to internal bag
-	sa.insert((int[]){1, 2, 3, 4}, 4); // insert array version
+	sa.insert((int[]) {1, 2, 3, 4}, 4); // insert array version
+	std::cout << "has 1? " << sa.has(1) << std::endl;
+  sa.print();
 	return (0);
 }

@@ -1,9 +1,9 @@
 #include "searchable_bag.hpp"
 #include "set.hpp"
 
-set::set(searchable_bag &bag) : bag(bag){};
+set::set(searchable_bag &bag) : bag(bag) {};
 
-set::~set(){};
+set::~set() {};
 
 set &set::operator=(const set &other)
 {
@@ -11,7 +11,7 @@ set &set::operator=(const set &other)
 	return (*this);
 };
 
-set::set(const set &other) : bag(other.bag){};
+set::set(const set &other) : bag(other.bag) {};
 
 void set::insert(int val)
 {
@@ -30,6 +30,11 @@ void set::clear()
 {
 	bag.clear();
 };
+
+bool set::has(int val) const
+{
+	return bag.has(val);
+}
 
 void set::print() const
 {
