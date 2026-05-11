@@ -9,7 +9,6 @@ class Bigint {
     Bigint();
     Bigint(long long n);
     Bigint(const Bigint &other);
+  friend std::ostream &operator<<(std::ostream &os, const Bigint &n);
+};
 
-
-}
-friend std::ostream &operator<<(std::ostream &os, const bigint &n);

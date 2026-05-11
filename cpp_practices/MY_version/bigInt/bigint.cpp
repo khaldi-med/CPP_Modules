@@ -21,18 +21,21 @@ Bigint::Bigint(long long n){
 Bigint::Bigint(const Bigint &other): _digit(other._digit) {}
 
 //Assignments
-Bigint &Bigint::operator=(const Bigint &other){
-  if(this != other)
-    _digit = other._digit;
-  return *this;
+//Bigint &Bigint::operator=(const Bigint &other){
+//  if(this != &other)
+//    _digit = other._digit;
+//  return *this;
+//}
+
+////Addition
+//Bigint Bigint::operator+(const Bigint &other) const{
+//  Bigint result;
+//   result._digit.clear();
+//   int carry;
+
+//}
+
+std::ostream &operator<<(std::ostream &os, const Bigint &n){
+  os << n._digit;
+  return os;
 }
-
-//Addition
-Bigint Bigint::operator+(const Bigint &other) const{
-  Bigint result;
-   result._digit.clear();
-   int carry;
-
-}
-
-
