@@ -21,12 +21,16 @@ Bigint::Bigint(long long n) {
 Bigint::Bigint(const Bigint &other): _digit(other._digit) {}
 
 //Assignments
-Bigint &operator+(const Bigint &other) {
-  int i = 
-                                                            
+Bigint operator+(const Bigint &other)  {
+  Bigint result;
+  int i = _digit.size() - 1;
+  int j = other._digit.size() - 1;
+  int carry = 0;
+ 
+  return result;
 }                             
               
 std::ostream &operator<<(std::ostream &os, const Bigint &n) {
 	os << n._digit;
 	return os;
-}                                                                                                                                                                                                                                     
+}                             
