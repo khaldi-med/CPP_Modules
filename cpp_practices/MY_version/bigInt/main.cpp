@@ -2,13 +2,17 @@
 #include <iostream>
 
 int main() {
+
 	Bigint a(42);
-	Bigint b(1337);
+	Bigint b;
 	Bigint c;
 	Bigint d(b);
+  
+  b = a;
 
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << c << std::endl;
-	std::cout << d << std::endl;
+  c = a + b;
+	std::cout<< "a = " << a << std::endl;
+	std::cout<< "b = " << b << std::endl;
+	std::cout<< "c = " << c << std::endl;
+	std::cout<< "d = " << d << std::endl;
 }

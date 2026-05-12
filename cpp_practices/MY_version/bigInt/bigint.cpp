@@ -21,16 +21,49 @@ Bigint::Bigint(long long n) {
 Bigint::Bigint(const Bigint &other): _digit(other._digit) {}
 
 //Assignments
-Bigint operator+(const Bigint &other)  {
+Bigint &Bigint::operator=(const Bigint &other){
+  if(this != &other)
+    _digit = other._digit;
+  return *this;
+}
+
+// Addition
+Bigint Bigint::operator+(const Bigint &other)  {
   Bigint result;
-  int i = _digit.size() - 1;
-  int j = other._digit.size() - 1;
+  
+  result._digit.clear();
+
+  int i = static_cast<int>(_digit.size()) - 1;
+  int j = static_cast<int>(other._digit.size()) - 1;
   int carry = 0;
- 
+  
+  while(i >= 0 || j >= 0 || carry){
+    int sum = carry;
+    if(i >= 0) sum += _digit[i--] - '0';
+    if(j >= 0) sum += other._digit[j--] - '0';
+  
+    carry = sum / 10;
+    result._digit += static_cast<char>('0' + sum % 10);
+  }
+  if(result._digit.empty())
+    result._digit = "0";
+
+  std::reverse(result._digit.begin(), result._digit.end());
+
   return result;
-}                             
-              
+}
+  
+Bigint &Bigint::operator+=(const Bigint &other){
+  *this += *this + other;
+  return *this;
+}
+
+Bigint::operator++(int n){
+  *this 
+  
+}
+
 std::ostream &operator<<(std::ostream &os, const Bigint &n) {
 	os << n._digit;
 	return os;
-}                             
+}
