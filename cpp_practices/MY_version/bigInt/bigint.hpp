@@ -30,7 +30,7 @@ public:
   Bigint operator>(const Bigint &other) const;
 
   //Increment/Decrement
-  Bigint &operator++();
+  Bigint operator++();
   Bigint operator++(int);
   // Bigint &operator--();
   // Bigint operator--(int);

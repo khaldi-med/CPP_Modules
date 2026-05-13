@@ -52,16 +52,34 @@ Bigint Bigint::operator+(const Bigint &other)  {
 
   return result;
 }
-  
+
+//Pre-increment
+Bigint Bigint::operator++(int n){
+  *this += Bigint(1);
+  return *this;
+}
+
+//Post-increment
+Bigint Bigint::operator++(){
+  Bigint tmp(*this);
+  ++(*this);
+  return tmp;
+}
+
+//dicrement
+Bigint Bigint::operator-(const Bigint &other) {
+  return Bigint(0);
+}
+
 Bigint &Bigint::operator+=(const Bigint &other){
   *this += *this + other;
   return *this;
 }
 
-Bigint::operator++(int n){
-  *this 
-  
+Bigint Bigint::operator<<(const Bigint &other){
+  return *this << other;
 }
+
 
 std::ostream &operator<<(std::ostream &os, const Bigint &n) {
 	os << n._digit;
