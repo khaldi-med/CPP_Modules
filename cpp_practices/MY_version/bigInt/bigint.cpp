@@ -80,6 +80,20 @@ Bigint Bigint::operator<<(const Bigint &other){
   return *this << other;
 }
 
+Bigint Bigint::operator>>(const Bigint &other){
+  return *this >> other;
+}
+
+Bigint &Bigint::operator<<=(const Bigint &other){
+  *this = *this << other;
+  return *this;
+}
+
+Bigint &Bigint::operator>>=(const Bigint &other){
+  *this = *this >> other;
+  return *this;
+}
+
 
 std::ostream &operator<<(std::ostream &os, const Bigint &n) {
 	os << n._digit;
