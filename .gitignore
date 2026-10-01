@@ -4,6 +4,4 @@
 *.md
 *.txt
 *.png
-*.pdf
-*.vscode
-.github
+*.gch

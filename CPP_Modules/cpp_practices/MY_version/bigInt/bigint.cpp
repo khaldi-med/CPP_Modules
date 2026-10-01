@@ -54,7 +54,7 @@ Bigint Bigint::operator+(const Bigint &other)  {
 }
 
 //Pre-increment
-Bigint Bigint::operator++(int){
+Bigint Bigint::operator++(int n){
   *this += Bigint(1);
   return *this;
 }
@@ -68,7 +68,6 @@ Bigint Bigint::operator++(){
 
 //dicrement
 Bigint Bigint::operator-(const Bigint &other) {
-  (void)other;
   return Bigint(0);
 }
 
@@ -95,31 +94,6 @@ Bigint &Bigint::operator>>=(const Bigint &other){
   return *this;
 }
 
-bool Bigint::operator!=(const Bigint &rhs) const {
-    return !(*this == rhs);
-}
-
-bool Bigint::operator==(const Bigint &other) const {
-  return _digit == other._digit;
-}
-
-bool Bigint::operator>=(const Bigint &other) const {
-  return !(*this < other);
-}
-
-bool Bigint::operator<=(const Bigint &other) const {
-  return !(*this > other);
-}
-
-bool Bigint::operator>(const Bigint &other) const {
-  if (_digit.size() != other._digit.size())
-        return _digit.size() > other._digit.size();
-    return _digit > other._digit; 
-}
-
-bool Bigint::operator<(const Bigint &other) const {
-  return other < *this;
-}
 
 std::ostream &operator<<(std::ostream &os, const Bigint &n) {
 	os << n._digit;

@@ -1,0 +1,124 @@
+#include <assert.h>
+#include <iostream>
+
+using namespace	std;
+
+class DynamicArray
+{
+	int *array;
+	int capacity;
+	int size;
+
+  public:
+	DynamicArray()
+	{
+		array = new int[capacity];
+		size = 0;
+    int capacity = 2;
+	}
+
+	void append(int element)
+	{
+		insertAt(element, size);
+	}
+
+	int length()
+	{
+		return (size);
+	}
+
+	int get(int pos)
+	{
+		return (array[pos]);
+	}
+
+	~DynamicArray()
+	{
+		delete[] array;
+	}
+
+  private:
+	void insertAt(int element, int pos)
+	{
+		assert(0 <= pos && pos <= size);
+		if (size == capacity)
+		{
+			resize();
+		}
+		for (int i = size; i > pos; i--)
+		{
+			array[i] = array[i - 1];
+		}
+		size++;
+		array[pos] = element;
+	}
+
+	void resize()
+	{
+		capacity *= 2;
+		int *temp = new int[capacity];
+		copy(array, array + size, temp);
+		delete[] array;
+		array = temp;
+	}
+};
+
+class DynamicArrayWithStats : public DynamicArray
+{
+	int max(void)
+	{
+		int max = get(0);
+		for (int i = 0; i < array.length(); i++)
+		{
+			if (array[i] > max)
+			{
+				max = array[i];
+			}
+		}
+		return (max);
+	}
+	int min(void)
+	{
+		int min = get(0);
+		for (int i = 0; i < array.length(); i++)
+		{
+			if (array[i] < min)
+			{
+				min = array[i];
+			}
+		}
+		return (min);
+	}
+
+	int mean(void)
+	{
+		int sum = 0;
+		for (int i = 0; i < array.length(); i++)
+		{
+			sum += array[i];
+		}
+		return (sum / array.length());
+	}
+};
+
+int	main(void)
+{
+	DynamicArrayWithStats	arr;
+
+	arr = DynamicArrayWithStats();
+	arr.append(2);
+	arr.append(6);
+	arr.append(4);
+	arr.append(1);
+	arr.append(3);
+	cout << "Array: ";
+	for (int i = 0; i < arr.length(); i++)
+	{
+		cout << arr.get(i) << " ";
+	}
+	cout << endl;
+	cout << "Max: " << arr.max() << endl;
+	cout << "Min: " << arr.min() << endl;
+	cout << "Mean: " << arr.mean() << endl;
+	return (0);
+}

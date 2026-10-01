@@ -19,14 +19,15 @@ public:
   Bigint operator+(const Bigint &other);
   Bigint &operator+=(const Bigint &other);
   Bigint operator-(const Bigint &other);
-  
+  // Bigint &operator-=(const Bigint &other);
+
   //Comparisons
-bool operator==(const Bigint &other) const;
-bool operator!=(const Bigint &other) const;
-bool operator>=(const Bigint &other) const;
-bool operator<=(const Bigint &other) const;
-bool operator<(const Bigint &other) const;
-bool operator>(const Bigint &other) const;
+  Bigint operator==(const Bigint &other) const;
+  Bigint operator!=(const Bigint &other) const;
+  Bigint operator>=(const Bigint &other) const;
+  Bigint operator<=(const Bigint &other) const;
+  Bigint operator<(const Bigint &other) const;
+  Bigint operator>(const Bigint &other) const;
 
   //Increment/Decrement
   Bigint operator++();
