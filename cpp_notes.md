@@ -56,3 +56,35 @@ A reference is an alias (another name) for an existing object.
 * `this is a pointer to the current object (always available inside any method)
 *this dereferences it — gives you the object itself, not the pointer
 you return it so you can chain assignments like a = b = c`
+
+## C++ Module 06: C++ Casts
+
+- The module contains three exercises: scalar conversion, pointer serialization, and identifying a real derived type.
+- The subject file is the source of truth; do not confuse Module 06 ex03 with the `DiamondTrap` exercise from another module.
+- ex00 uses `ScalarConverter::convert` to parse a string literal and display it as `char`, `int`, `float`, and `double`.
+- Scalar conversion requires first detecting the literal type, then explicitly converting to the other scalar types.
+- In a decimal literal such as `42.0f`, the trailing `f` suffix identifies the value as a `float`; without it, `42.0` is treated as a `double`.
+- The ex00 mental model is: read the input string -> detect and parse its literal type -> convert the parsed value to the other scalar types -> print each result or an informative error.
+- The ex00 scaffold contains `Makefile`, `main.cpp`, `ScalarConverter.hpp`, and `ScalarConverter.cpp`; the implementation remains intentionally empty until the design is understood.
+- `ScalarConverter` stores no object state, so its conversion function should be static and users should not create `ScalarConverter` objects.
+- A static member function has no `this` pointer and cannot access object members; this matters because `ScalarConverter::convert` must not use `this->literal`.
+- `static` on a member function means the function belongs to the class itself, not to an individual object; call it as `ScalarConverter::convert(input)` without constructing a `ScalarConverter`.
+- A static function is appropriate when the operation needs no object state. It also explains why `convert` cannot use `this` or non-static members.
+- A non-member `operator<<` cannot access private members unless it is declared `friend`; ex00 does not need an output operator because conversion is performed by the static function.
+- The repaired ScalarConverter keeps all conversion work in the static function and uses private constructors to prevent user instantiation.
+- `strtol` and `strtod` require a C-string from `.c_str()` and an end pointer to confirm that the complete input was consumed.
+- `strtol`/`strtod` report range errors through `errno`, not through `std::invalid_argument` or `std::out_of_range` exceptions.
+- Decimal notation means inputs such as `42`, `-42`, `4.2`, and `4.2f`; hexadecimal and octal inputs are outside this exercise.
+- Character inputs use quotes such as `'c'` or `'a'`. If another conversion produces a character outside the displayable range, print an informative message instead of showing an invisible character.
+- The subject allows standard string-to-number conversion functions. In C++98, `std::strtol` is useful for integers and `std::strtod` for decimal values; `std::stringstream` is another standard option when input validation is needed.
+- `std::atoi` and similar simple functions do not report errors or overflow clearly, so they are less suitable for a robust converter.
+- After parsing, use `static_cast` for the explicit scalar conversions required by the exercise.
+- Invalid, overflowing, and non-displayable conversions need informative output.
+- ex01 uses `reinterpret_cast` to convert a `Data*` to `uintptr_t` and back, then verifies that the pointer is unchanged.
+- ex02 uses `dynamic_cast` to identify `A`, `B`, or `C` through a `Base*` or `Base&`; `<typeinfo>` is forbidden.
+- The appropriate cast must be explainable during the defense.
+- In ex01, `uintptr_t` is an unsigned integer type capable of representing a pointer value; use `reinterpret_cast` for the pointer/integer representation round trip, and keep the original `Data` object alive while testing it.
+- Serialization here does not copy the `Data` fields. It temporarily represents the pointer address as an integer and then reconstructs the pointer; pointer equality must be checked after deserialization.
+- ex01 was validated in WSL: the original pointer and deserialized pointer had the same address, and the restored pointer successfully accessed the original `Data` members.
+- The subject forbids `using namespace <ns_name>`, not qualified names such as `std::cout`; to avoid any ambiguity, file-local helper functions can use `static` instead of an anonymous namespace.
+- Keep this global file updated with important questions, corrections, verified commands, and lessons from each module.

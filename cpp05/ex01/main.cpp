@@ -27,7 +27,6 @@ int main()
     {
         std::cout << "Exception caught: grade 0 is too high" << std::endl;
     }
-
     try
     {
         Form form("Too low", 30, 151);
